@@ -23,14 +23,14 @@ def get_lat_lon_from_address(address_l):
     for address in tqdm(address_l):
         payload = {"v": 1.1, 'q': address}
         r = requests.get(url, params=payload)
-        ret = BeautifulSoup(r.content, 'lxml')
+        ret = BeautifulSoup(r.content,'lxml')
         if ret.find('error'):
             raise ValueError(f"Invalid address submitted. {address}")
         else:
             lat = ret.find('lat').string
             lon = ret.find('lng').string
-            latlons.append([lat, lon])
-            time.sleep(10)
+            latlons.append((lat,lon))
+            #time.sleep(10)
     return latlons
 
 def delete_json(d, index):
