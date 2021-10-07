@@ -1,3 +1,4 @@
 tqdm
 lxml
+parser
 beautifulSoup4
