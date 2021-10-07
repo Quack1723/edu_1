@@ -1,3 +1,4 @@
+pip
 tqdm
 lxml
 beautifulSoup4
