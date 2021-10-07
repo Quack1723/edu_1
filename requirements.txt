@@ -1,4 +1,4 @@
-pip
 tqdm
 lxml
 beautifulsoup4
+requests
