@@ -1,4 +1,3 @@
 tqdm
-lxml
-parser
+lxml == 3.7.3
 beautifulSoup4
