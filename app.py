@@ -6,7 +6,7 @@ import json
 import os
 import time
 import requests
-import tqdm
+from tqdm import tqdm
 import urllib.request
 import urllib.parse
 from bs4 import BeautifulSoup
