@@ -22,8 +22,9 @@ def get_lat_lon_from_address(address_l):
     url = 'http://www.geocoding.jp/api/'
     latlons = []
     for address in tqdm(address_l):
-        payload = {'q': address}
+        payload = {"v": 1.1, 'q': address}
         html = requests.get(url, params=payload)
+        st.markdown(html)
         ret = BeautifulSoup(html.content, 'lxml')
         st.markdown(ret)
         if ret.find('error'):
