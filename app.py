@@ -1,6 +1,15 @@
+!pip install folium
+
 import numpy as np
 import random
 import streamlit as st
+from pathlib import Path
+import json
+import os
+import time
+import requests
+
+
 
 
 def main():
