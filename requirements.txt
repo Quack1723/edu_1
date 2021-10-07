@@ -5,6 +5,5 @@ tqdm
 requests
 pandas
 lxml
-json
 os
 pandas
