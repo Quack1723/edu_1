@@ -25,6 +25,7 @@ def get_lat_lon_from_address(address_l):
         payload = {'q': address}
         html = requests.get(url, params=payload)
         ret = BeautifulSoup(html.content, 'lxml')
+        st.markdown(ret)
         if ret.find('error'):
             raise ValueError(f"Invalid address submitted. {address}")
         else:
