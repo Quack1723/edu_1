@@ -1,3 +1,4 @@
 tqdm
 lxml
-BeautifulSoup4
+beautifulSoup4
+bf4
