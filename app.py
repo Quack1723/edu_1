@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 from pathlib import Path
 
+
 def get_lat_lon_from_address(address_l):
     """
     address_lにlistの形で住所を入れてあげると、latlonsという入れ子上のリストで緯度経度のリストを返す関数。
@@ -24,7 +25,7 @@ def get_lat_lon_from_address(address_l):
     for address in tqdm(address_l):
         payload = {'q': address}
         html = requests.get(url, params=payload)
-        ret = BeautifulSoup(html.content, "html.parser")
+        ret = BeautifulSoup(html.content, 'lxml')
         if ret.find('error'):
             raise ValueError(f"Invalid address submitted. {address}")
         else:
@@ -33,6 +34,7 @@ def get_lat_lon_from_address(address_l):
             latlons.append((lat, lon))
             time.sleep(5)
     return latlons
+
 
 def delete_json(d, index):
     for key in d.keys():
@@ -55,6 +57,7 @@ def make_dic(sample_lat, sample_w):
         dic_w[i] = sample_w[i]
 
     return dic_lat, dic_w
+
 
 def get_integral_value_combination(dic_w, target):
     def a(idx, l, r, I, j, t):
