@@ -5,4 +5,3 @@ tqdm
 requests
 pandas
 lxml==4.4.1
-​
