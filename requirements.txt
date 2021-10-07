@@ -1,5 +1,5 @@
 pip
-tqdm
+tqdm==4.36.1
 lxml
 beautifulsoup4==4.8.0
-requests
+requests==2.22.0
