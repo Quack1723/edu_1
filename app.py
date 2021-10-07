@@ -108,7 +108,7 @@ def main():
         st.dataframe(df)
     json.dump(d, open(cliant_db_path, "w"))
 
-"""
+    """
     # 回収する側
     st.markdown('** 回収してくれる方はこちらで検索 **')
     # サンプル用の緯度経度データを作成する
@@ -179,7 +179,7 @@ def main():
     folium.Marker(location=[35.6816778, 139.7703389]).add_to(map)
     folium.Marker(location=[35.6859722, 139.7747778]).add_to(map)
     folium_static(map)  # 地図情報を表示
-"""
+    """
 
 if __name__ == '__main__':
     main()
