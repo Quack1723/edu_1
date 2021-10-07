@@ -23,15 +23,27 @@ def get_lat_lon_from_address(address_l):
     for address in tqdm(address_l):
         payload = {"v": 1.1, 'q': address}
         r = requests.get(url, params=payload)
-        ret = BeautifulSoup(r.content,'lxml')
+        ret = BeautifulSoup(r.content, 'lxml')
         if ret.find('error'):
             raise ValueError(f"Invalid address submitted. {address}")
         else:
             lat = ret.find('lat').string
             lon = ret.find('lng').string
-            latlons.append([lat,lon])
+            latlons.append([lat, lon])
             time.sleep(10)
     return latlons
+
+def delete_json(d, index):
+    for key in d.keys():
+        d[key] = d[key][:index] + d[key][index+1:]
+    return d
+
+def insert_json(d, name, address, how_many):
+    d['name'].append(name)
+    d['lat'].append(address[0])
+    d['lon'].append(address[1])
+    d['how_many'].append(how_many)
+    return d
 
 
 def make_dic(sample_lat, sample_w):
