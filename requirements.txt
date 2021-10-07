@@ -1,4 +1,3 @@
 tqdm
 lxml
 beautifulSoup4
-bf4
