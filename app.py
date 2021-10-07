@@ -23,8 +23,8 @@ def get_lat_lon_from_address(address_l):
     latlons = []
     for address in tqdm(address_l):
         payload = {'q': address}
-        r = requests.get(url, params=payload)
-        ret = BeautifulSoup(r.content, "r.parser")
+        html = requests.get(url, params=payload)
+        ret = BeautifulSoup(html.content, "html.parser")
         if ret.find('error'):
             raise ValueError(f"Invalid address submitted. {address}")
         else:
