@@ -10,6 +10,7 @@ import tqdm
 import urllib.request
 import urllib.parse
 from bs4 import BeautifulSoup
+import pandas as pd
 
 def get_lat_lon_from_address(address_l):
     """
@@ -33,13 +34,55 @@ def get_lat_lon_from_address(address_l):
     return latlons
 
 
+def make_dic(sample_lat, sample_w):
+    dic_lat = {}
+    dic_w = {}
+    for i in range(len(sample_lat)):
+        dic_lat[i] = sample_lat[i][0]
+        dic_w[i] = sample_w[i]
+
+    return dic_lat, dic_w
+
+def get_integral_value_combination(dic_w, target):
+    def a(idx, l, r, I, j, t):
+        if t == sum(l):
+            r.append(l)
+            j.append(I)
+        elif t < sum(l):
+            return
+        for u in range(idx, len(dic_w)):
+            a((u + 1), l + [dic_w[u]], r, I+[u], j, t)
+        return r,j
+    return a(0, [], [], [], [], target)
+
+
+def make_P_list(Index, dic_lat, W_choice, S, G):
+    P = []
+    P_W = []
+    for pat in range(len(Index)):
+        D2 = {}
+        W2 = {}
+        for i in range(len(Index[pat]) + 2):
+            if i == 0:
+                D2[i] = S
+                W2[i] = 0
+            elif i == len(Index[pat]) + 1:
+                D2[i] = G
+                W2[i] = 0
+            else:
+                D2[i] = dic_lat[Index[pat][i - 1]]
+                W2[i] = W_choice[pat][i - 1]
+        P.append(D2)
+        P_W.append(W2)
+
+    return P, P_W
+
 def main():
     # タイトル
     st.title('段ボールEats')
     # 回収して欲しい側
     st.markdown('** 回収をお願いする方はこちらに登録 **')
 
-    """""
     cliant_db_path = f"cliant_db.json"
     if os.path.exists(cliant_db_path) and os.stat(cliant_db_path).st_size != 0:
         json_open = open(cliant_db_path, 'r')
@@ -65,6 +108,7 @@ def main():
         st.dataframe(df)
     json.dump(d, open(cliant_db_path, "w"))
 
+"""
     # 回収する側
     st.markdown('** 回収してくれる方はこちらで検索 **')
     # サンプル用の緯度経度データを作成する
