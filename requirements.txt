@@ -5,5 +5,4 @@ tqdm
 requests
 pandas
 lxml
-os
 pandas
