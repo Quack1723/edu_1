@@ -2,3 +2,4 @@ tqdm
 lxml
 beautifulsoup4
 requests
+urllib

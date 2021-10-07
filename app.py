@@ -7,8 +7,8 @@ import os
 import time
 import requests
 from tqdm import tqdm
-import urllib3.request
-import urllib3.parse
+import urllib.request
+import urllib.parse
 from bs4 import BeautifulSoup
 import pandas as pd
 import lxml
