@@ -5,3 +5,4 @@ tqdm
 requests
 pandas
 lxml
+urllib.request
