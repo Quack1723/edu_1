@@ -21,16 +21,16 @@ def get_lat_lon_from_address(address_l):
     url = 'http://www.geocoding.jp/api/'
     latlons = []
     for address in tqdm(address_l):
-        payload = {"v": 1.1, 'q': address}
+        payload = {'q': address}
         r = requests.get(url, params=payload)
-        ret = BeautifulSoup(r.content, 'r.parser')
+        ret = BeautifulSoup(r.content, "r.parser")
         if ret.find('error'):
             raise ValueError(f"Invalid address submitted. {address}")
         else:
-            lat = ret.find('lat')
-            lon = ret.find('lng')
-            latlons.append((lat,lon))
-            time.sleep(10)
+            lat = ret.find('lat').string
+            lon = ret.find('lng').string
+            latlons.append((lat, lon))
+            time.sleep(5)
     return latlons
 
 def delete_json(d, index):
