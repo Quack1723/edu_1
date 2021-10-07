@@ -27,10 +27,10 @@ def get_lat_lon_from_address(address_l):
         if ret.find('error'):
             raise ValueError(f"Invalid address submitted. {address}")
         else:
-            lat = ret.find('lat').string
-            lon = ret.find('lng').string
+            lat = ret.find('lat')
+            lon = ret.find('lng')
             latlons.append((lat,lon))
-            #time.sleep(10)
+            time.sleep(10)
     return latlons
 
 def delete_json(d, index):
